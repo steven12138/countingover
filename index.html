@@ -25,7 +25,7 @@
         
         li span {
             display: block;
-            font-size: 8rem;
+            font-size: 12rem;
         }
         /* general styling */
         
@@ -50,6 +50,10 @@
             font-size: 2rem !important;
         }
         
+        ul {
+            transition: all .25s ease-in-out;
+        }
+        
         .container {
             color: #333;
             margin: 0 auto;
@@ -62,7 +66,7 @@
 
 <body>
     <div class="container">
-        <h1 style="font-size:3em;">距离段考结束还有:</h1>
+        <h1 style="font-size:3em;">距离全部段考结束还有:</h1>
         <ul>
             <li style="font-size:1rem"><span id="days"></span><span class="tag">天</span></li>
             <li><span id="hours"></span><span class="tag">小时</span></li>

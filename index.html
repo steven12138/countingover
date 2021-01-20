@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
-            background-color: #ffcece;
+            background-color: #ceffd2b6;
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
@@ -62,15 +62,17 @@
 
 <body>
     <div class="container">
-        <h1 style="font-size:3em;">从段考开始已经过去了:</h1>
+        <h1 style="font-size:3em;">距离段考结束还有:</h1>
         <ul>
             <li style="font-size:1rem"><span id="days"></span><span class="tag">天</span></li>
             <li><span id="hours"></span><span class="tag">小时</span></li>
             <li><span id="minutes"></span><span class="tag">分钟</span></li>
             <li><span id="seconds"></span><span class="tag">秒</span></li>
         </ul>
-        <h3 style="font-size: 2em;">一个正计时</h3>
-        <h3>Powered By steven12138</h3>
+        <h3 style="font-size: 2em;">四舍五入已经放假了 ！ 😀</h3>
+        <br>
+        <br>
+        <h3>一个倒计时 · Powered By steven12138</h3>
     </div>
 </body>
 <script>
@@ -103,16 +105,16 @@
         hour = minute * 60,
         day = hour * 24;
 
-    let countDown = new Date('Jan 21, 2021 08:00:00').getTime(),
+    let countDown = new Date('Jan 22, 2021 17:30:00').getTime(),
         x = setInterval(function() {
 
             let now = new Date().getTime(),
                 distance = countDown - now;
 
-            document.getElementById('days').innerText = -Math.floor(distance / (day)),
-                document.getElementById('hours').innerText = -Math.floor((distance % (day)) / (hour)),
-                document.getElementById('minutes').innerText = -Math.floor((distance % (hour)) / (minute)),
-                document.getElementById('seconds').innerText = -Math.floor((distance % (minute)) / second);
+            document.getElementById('days').innerText = Math.floor(distance / (day)),
+                document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
+                document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+                document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
 
 
         }, second)

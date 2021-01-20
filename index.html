@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            font-weight: normal;
+        }
+        
+        li {
+            display: inline-block;
+            font-size: 1.5em;
+            list-style-type: none;
+            padding: 2em;
+            text-transform: uppercase;
+        }
+        
+        li span {
+            display: block;
+            font-size: 8rem;
+        }
+        /* general styling */
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        body {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background-color: #ffcece;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        }
+        
+        .tag {
+            font-size: 2rem !important;
+        }
+        
+        .container {
+            color: #333;
+            margin: 0 auto;
+            padding: 0.5rem;
+            text-align: center;
+        }
+    </style>
+    <title>段考倒计时</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="font-size:3em;">从段考开始已经过去了:</h1>
+        <ul>
+            <li style="font-size:1rem"><span id="days"></span><span class="tag">天</span></li>
+            <li><span id="hours"></span><span class="tag">小时</span></li>
+            <li><span id="minutes"></span><span class="tag">分钟</span></li>
+            <li><span id="seconds"></span><span class="tag">秒</span></li>
+        </ul>
+        <h3 style="font-size: 2em;">一个正计时</h3>
+        <h3>Powered By steven12138</h3>
+    </div>
+</body>
+<script>
+    function getPar(par) {
+        //获取当前URL
+        var local_url = document.location.href;
+        //获取要取得的get参数位置
+        var get = local_url.indexOf(par + "=");
+        if (get == -1) {
+            return false;
+        }
+        //截取字符串
+        var get_par = local_url.slice(par.length + get + 1);
+        //判断截取后的字符串是否还有其他get参数
+        var nextPar = get_par.indexOf("&");
+        if (nextPar != -1) {
+            get_par = get_par.slice(0, nextPar);
+        }
+        return get_par;
+    }
+    window.onload = function() {
+        var defalut_color = "#ffcece";
+        var get_color = getPar("color");
+        if (get_color) {
+            document.body.style["background-color"] = get_color;
+        }
+    }
+    const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+    let countDown = new Date('Jan 21, 2021 08:00:00').getTime(),
+        x = setInterval(function() {
+
+            let now = new Date().getTime(),
+                distance = countDown - now;
+
+            document.getElementById('days').innerText = -Math.floor(distance / (day)),
+                document.getElementById('hours').innerText = -Math.floor((distance % (day)) / (hour)),
+                document.getElementById('minutes').innerText = -Math.floor((distance % (hour)) / (minute)),
+                document.getElementById('seconds').innerText = -Math.floor((distance % (minute)) / second);
+
+
+        }, second)
+</script>
+
+</html>
